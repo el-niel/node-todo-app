@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const slugify = require('slugify');
 
 const todoSchema = mongoose.Schema({
     name: {
@@ -18,6 +19,12 @@ const todoSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+});
+
+todoSchema.pre('save', function (next) {
+    this.name = slugify(this.name, '_');
+
+    next();
 });
 
 module.exports = mongoose.model('Todo', todoSchema);

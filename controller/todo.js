@@ -60,9 +60,20 @@ exports.getSingleTodo = asyncHandler(async (req, res, next) => {
     });
 });
 
-exports.deleteTodo = (req, res, next) => {
+exports.deleteTodo = asyncHandler(async (req, res, next) => {
+    const todo = await Todo.findByIdAndDelete(req.params.id);
+
+    if (!todo) {
+        return next(
+            new ErrorResponse(
+                'Theres no resource with associated resource',
+                404
+            )
+        );
+    }
+
     res.status(200).json({
         success: true,
-        message: 'deleting todo app',
+        data: [],
     });
-};
+});
