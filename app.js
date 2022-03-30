@@ -2,6 +2,7 @@ const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv');
 const todoRouter = require('./routes/todoRoutes');
+const projectRouter = require('./routes/projectRoutes');
 const errorHandler = require('./middleware/errorHandler');
 const DB = require('./utils/mongodb');
 
@@ -13,8 +14,10 @@ DB();
 
 const port = process.env.PORT;
 
-app.use(errorHandler);
 app.use('/todo', todoRouter);
+app.use('/project', projectRouter);
+
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server up and running at  ${port}`.yellow.underline);
