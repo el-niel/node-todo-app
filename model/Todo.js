@@ -19,6 +19,11 @@ const todoSchema = mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+
+    project: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Project',
+    },
 });
 
 todoSchema.pre('save', function (next) {
