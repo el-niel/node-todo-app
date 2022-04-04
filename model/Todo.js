@@ -13,16 +13,14 @@ const todoSchema = mongoose.Schema({
         trim: true,
     },
 
-    items: [String],
+    items: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'Project',
+    },
 
     createAt: {
         type: Date,
         default: Date.now,
-    },
-
-    project: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
     },
 });
 

@@ -3,7 +3,7 @@ const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('../utils/asyncHandler');
 
 exports.getProject = asyncHandler(async (req, res, next) => {
-    const project = await Project.find().populate({ path: 'todo' });
+    const project = await Project.find();
     if (!project) {
         return next(
             new ErrorResponse(

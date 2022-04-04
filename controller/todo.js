@@ -3,7 +3,7 @@ const ErrorResponse = require('../utils/ErrorResponse');
 const asyncHandler = require('../utils/asyncHandler');
 
 exports.getTodo = asyncHandler(async (req, res, next) => {
-    const todo = await Todo.find().populate({ path: 'project' });
+    const todo = await Todo.find();
     res.status(200).json({
         success: true,
         count: todo.length,
